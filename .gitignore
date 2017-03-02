@@ -1,0 +1,42 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+phone-app/dist
+phone-app/tmp
+
+# dependencies
+phone-app/node_modules
+phone-store/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+phone-app/.sass-cache
+phone-app/connect.lock
+phone-app/coverage/*
+phone-app/libpeerconnection.log
+phone-app/npm-debug.log
+phone-store/npm-debug.log
+testem.log
+phone-app/typings
+
+# e2e
+phone-app/e2e/*.js
+phone-app/e2e/*.map
+
+#System Files
+.DS_Store
+Thumbs.db
