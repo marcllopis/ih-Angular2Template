@@ -2,7 +2,7 @@ var express = require('express');
 const mongoose = require('mongoose');
 var router = express.Router();
 const Phone = require('../model/phone');
-
+const upload = require('../config/multer');
 
 /* GET Phones listing. */
 router.get('/', (req, res, next) => {
@@ -15,23 +15,23 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.post('/', (req, res) => {
-	console.log(req.body);
-  const phone = new Phone({
-  	brand: req.body.brand,
-    name: req.body.name,
-    specs: req.body.specs,
-    image: req.body.image || ''
-  });
+// router.post('/', (req, res) => {
+// 	console.log(req.body);
+//   const phone = new Phone({
+//   	brand: req.body.brand,
+//     name: req.body.name,
+//     specs: req.body.specs,
+//     image: req.body.image || ''
+//   });
 
-  phone.save((err) => {
-    if (err) {
-      return res.send(err);
-    }
+//   phone.save((err) => {
+//     if (err) {
+//       return res.send(err);
+//     }
 
-    return res.json({ message: 'New Phone created!' });
-  });
-});
+//     return res.json({ message: 'New Phone created!' });
+//   });
+// });
 
 /* GET a single Phone. */
 router.get('/:id', (req, res) => {
@@ -85,6 +85,26 @@ router.delete('/:id', (req, res) => {
       message: 'Phone has been removed!'
     });
   })
+});
+
+router.post('/', upload.single('file'), function(req, res) {
+  const phone = new Phone({
+    name: req.body.name,
+    brand: req.body.brand,
+    image: `/uploads/${req.file.filename}`,
+    specs: JSON.parse(req.body.specs) || []
+  });
+
+  phone.save((err) => {
+    if (err) {
+      return res.send(err);
+    }
+
+    return res.json({
+      message: 'New Phone created!',
+      phone: phone
+    });
+  });
 });
 
 module.exports = router;

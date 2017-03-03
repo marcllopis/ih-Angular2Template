@@ -13,7 +13,10 @@ var cors = require('cors');
 require('./config/database');
 var app = express();
 
-app.use(cors());
+
+var corsOptions = {credentials: true, origin: 'http://localhost:4200'};
+app.options('*', cors(corsOptions));
+app.use(cors(corsOptions));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
