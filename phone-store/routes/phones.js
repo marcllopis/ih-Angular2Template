@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 var router = express.Router();
 const Phone = require('../model/phone');
 const upload = require('../config/multer');
+const passport = require('../config/passport');
 
 /* GET Phones listing. */
 router.get('/', (req, res, next) => {

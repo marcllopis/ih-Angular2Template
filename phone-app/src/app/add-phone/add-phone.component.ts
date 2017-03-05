@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FileUploader } from "ng2-file-upload";
+import { SessionService } from "../session.service";
 
 @Component({
   selector: 'app-add-phone',
@@ -8,7 +9,8 @@ import { FileUploader } from "ng2-file-upload";
 })
 export class AddPhoneComponent implements OnInit {
   uploader: FileUploader = new FileUploader({
-    url: `http://localhost:3000/api/phones/`
+    url: `http://localhost:3000/api/phones/`,
+    authToken: `JWT ${this.session.token}`
   });
 
 	newPhone = {
@@ -18,7 +20,7 @@ export class AddPhoneComponent implements OnInit {
   };
 
   feedback: string;
-  constructor() { }
+  constructor(private session: SessionService ) { }
 
   ngOnInit() {
   	this.uploader.onSuccessItem = (item, response) => {
@@ -40,7 +42,7 @@ export class AddPhoneComponent implements OnInit {
       form.append('brand', this.newPhone.brand);
       form.append('specs', JSON.stringify(this.newPhone.specs));
     };
-
+    
     this.uploader.uploadAll();
   }
 

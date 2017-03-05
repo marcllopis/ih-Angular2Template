@@ -1,29 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions} from '@angular/http';
+import { SessionService } from './session.service'
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PhoneService {
   BASE_URL: string = 'http://localhost:3000/api';
-  constructor(private http: Http) {}
+  
+  constructor(
+    private http: Http,
+    private SessionService: SessionService
+  ) {
+    
+  }
     
   getList() {
-    return this.http.get(`${this.BASE_URL}/phones`)
+    
+    let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(`${this.BASE_URL}/phones`, options)
       .map((res) => res.json());
   }
   
   get(id) {
-    return this.http.get(`${this.BASE_URL}/phones/${id}`)
+    let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(`${this.BASE_URL}/phones/${id}`, options)
       .map((res) => res.json());
   }
   
   edit(phone) {
-    return this.http.put(`${this.BASE_URL}/phones/${phone.id}`, phone)
+    let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.put(`${this.BASE_URL}/phones/${phone.id}`, phone, options )
       .map((res) => res.json());
   }
   
   remove(id) {
-    return this.http.delete(`${this.BASE_URL}/phones/${id}`)
+    let headers = new Headers({ 'Authorization': 'JWT ' + this.SessionService.token });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.delete(`${this.BASE_URL}/phones/${id}`, options)
       .map((res) => res.json());
   }
 }
