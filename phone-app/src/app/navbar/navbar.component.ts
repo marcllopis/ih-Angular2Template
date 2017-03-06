@@ -18,14 +18,19 @@ export class NavbarComponent implements OnInit {
     this.session.isAuth
         .subscribe((isAuth: boolean) => {
         // user will be false if logged out
-        // or user object if logged in. 
+        // or user object if logged in.
           this.isAuth = isAuth;
         });
+    if (this.session.token) {
+      this.isAuth = true;
+    } else {
+      this.isAuth = false;
+    }
   }
 
   ngOnInit() {
   }
-  
+
   logout() {
   	this.session.logout();
   	// this.router.navigate(['/login']);
