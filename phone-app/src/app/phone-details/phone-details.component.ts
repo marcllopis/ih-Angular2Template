@@ -33,8 +33,9 @@ export class PhoneDetailsComponent implements OnInit {
   	if (window.confirm('Are you sure?')) {
     	this.phoneService.remove(this.phone._id)
       .subscribe(() => {
-        this.router.navigate(['']);
+         this.router.navigate(['/phone']);
       });
   	}
+
 	}
 }
