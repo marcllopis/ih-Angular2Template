@@ -12,7 +12,7 @@ const bcryptSalt     = 10;
 
 
 router.post("/login", function(req, res) {
-  
+
   if(req.body.username && req.body.password){
     var username = req.body.username;
     var password = req.body.password;
@@ -24,7 +24,7 @@ router.post("/login", function(req, res) {
   }
 
   User.findOne({ "username": username }, (err, user)=> {
-  	
+
   	if( ! user ){
 	    res.status(401).json({message:"no such user found"});
 	  } else {
@@ -35,9 +35,9 @@ router.post("/login", function(req, res) {
         } else {
           var payload = {id: user._id};
           var token = jwt.sign(payload, jwtOptions.secretOrKey);
-          res.json({message: "ok", token: token});    
+          res.json({message: "ok", token: token,  user: user});    
         }
-      });  
+      });
     }
   })
 });
@@ -72,7 +72,7 @@ router.post("/signup", (req, res, next) => {
         var payload = {id: user._id};
         console.log('user', user);
         var token = jwt.sign(payload, jwtOptions.secretOrKey);
-        res.status(200).json({message: "ok", token: token});    
+        res.status(200).json({message: "ok", token: token});
       	// res.status(200).json(user);
       }
     });

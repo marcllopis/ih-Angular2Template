@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div *ngIf="!isAuth" class="jumbotron">
   <h1>Hello, world!</h1>
   <p>Welcome to Phone Store</p>
   <p><a class="btn btn-primary btn-lg" [routerLink]="['/login']" role="button">Login</a></p>

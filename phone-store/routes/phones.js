@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({ message: 'Specified id is not valid' });
   }
-  
+
   Phone.findById(req.params.id, (err, Phones) => {
       if (err) {
         return res.send(err);
@@ -54,7 +54,7 @@ router.put('/:id', (req, res) => {
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({ message: 'Specified id is not valid' });
   }
-  
+
   Phone.findByIdAndUpdate(req.params.id, {
     brand: req.body.brand,
     name: req.body.name,
@@ -76,7 +76,7 @@ router.delete('/:id', (req, res) => {
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({ message: 'Specified id is not valid' });
   }
-  
+
   Phone.remove({ _id: req.params.id }, (err) => {
     if (err) {
       return res.send(err);
