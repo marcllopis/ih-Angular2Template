@@ -1,9 +1,7 @@
 img {
-	width: 150px;
+  height: 200px;
 }
 
-.item {
-	display: inline-block;
-	width: 200px;
-
+.top-spacing{
+  margin-top: 50px;
 }

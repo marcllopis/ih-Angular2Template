@@ -16,6 +16,7 @@ import { AddPhoneComponent } from './add-phone/add-phone.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { TabsModule } from 'ng2-bootstrap/tabs';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -34,6 +35,7 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    TabsModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
   providers: [PhoneService, SessionService],
