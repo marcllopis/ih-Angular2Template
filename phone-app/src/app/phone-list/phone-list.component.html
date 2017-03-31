@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <div class="top-spacing">
   <div class="container white-cont">
@@ -18,5 +19,14 @@
         <hr>
       </div>
     </div>
+=======
+<h1> Phone list </h1>
+<div>
+  <div *ngFor="let phone of phones" class="item">
+    <img [src]="phone.image" >
+    <h3> {{ phone.name }} </h3>
+    <p> {{ phone.brand }} </p>
+    <a [routerLink]="['/phone', phone._id]"> View Details </a>
+>>>>>>> e3cfaaa7749f113afa5f57df256c9d7c1522a422
   </div>
 </div>

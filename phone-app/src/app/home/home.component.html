@@ -6,7 +6,7 @@
       <div class="col-sm-7">
         <div class="header-content">
           <div class="header-content-inner">
-            <h1><strong>WELCOME TO IRONHACK PHONE STORE!</strong></h1><h2>Everything here is made with the coolest framework: <strong>Angular 2</strong></h2><br><br>
+            <h1  *ngIf="isAuth"><strong>Hi {{user.username}}, </strong></h1><h1><strong>WELCOME TO IRONHACK PHONE STORE!</strong></h1><h2>Everything here is made with the coolest framework: <strong>Angular 2</strong></h2><br><br>
             <a [routerLink]="['phone']" class="btn btn-outline btn-xl page-scroll"><strong>Check all phones!</strong></a>
           </div>
         </div>
